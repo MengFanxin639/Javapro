@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Javaprocise">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse-jee-neon-3-win32/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="Javaprocise.classpath">
+        <pathelement location="bin"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="images">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="images"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="BankMain">
+        <java classname="myclasspro.BankMain" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="BankUi">
+        <java classname="myclasspro.BankUi" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="BookText">
+        <java classname="BookText" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="BorderLayoutDemo">
+        <java classname="BorderLayoutDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="BufferedStreamDemo">
+        <java classname="file_stream.BufferedStreamDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="BufferedWriterReaderDemo">
+        <java classname="file_stream.BufferedWriterReaderDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="checkout">
+        <java classname="bookprocise.checkout" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="checkout（1）">
+        <java classname="checkout" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="checkuser">
+        <java classname="User.checkuser" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="checkuserV2">
+        <java classname="User.checkuserV2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="checkuserV3">
+        <java classname="User.checkuserV3" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Client">
+        <java classname="renxiaolong_study.net.Client" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Demo">
+        <java classname="renxiaolong_study.Demo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="EmployTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="bookprocise.EmployTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </junit>
+    </target>
+    <target name="EmployTest.testDelete">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="bookprocise.EmployTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </junit>
+    </target>
+    <target name="EmployTest.testSave">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="bookprocise.EmployTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </junit>
+    </target>
+    <target name="figure">
+        <java classname="bookprocise.figure" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="FileDemo">
+        <java classname="User.FileDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="FileDemo1">
+        <java classname="renxiaolong_study.FileDemo1" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="FileDemo1Test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="renxiaolong_study.FileDemo1Test" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </junit>
+    </target>
+    <target name="FileDemo2">
+        <java classname="renxiaolong_study.FileDemo2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="FileInputStreamDemo">
+        <java classname="file_stream.FileInputStreamDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="flowLayoutDemo">
+        <java classname="User.flowLayoutDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="GoodsDemo">
+        <java classname="myclasspro.GoodsDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="GoodsDemo1">
+        <java classname="myclasspro.GoodsDemo1" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="goodsDemo2">
+        <java classname="myclasspro.goodsDemo2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="gridLayout">
+        <java classname="User.gridLayout" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Javaprocise">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="bookprocise.EmployTest" todir="${junit.output.dir}"/>
+            <test name="renxiaolong_study.FileDemo1Test" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </junit>
+    </target>
+    <target name="JavaProcisetext">
+        <java classname="JavaProcisetext" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="jfrm">
+        <java classname="User.jfrm" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="jfrm（1）">
+        <java classname="jfrm" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="lineDemo">
+        <java classname="User.lineDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Main（1）">
+        <java classname="studentManageSystemDemo.Main" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Main（3）">
+        <java classname="myclasspro.interfaceDemo.Main" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="manage">
+        <java classname="User.manage" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Manages">
+        <java classname="User.Manages" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="ManageSystemDemo">
+        <java classname="myclasspro.ManageSystemDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="ManageSystemDemoV1">
+        <java classname="myclasspro.ManageSystemDemoV1" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="ManageSystemDemoV2">
+        <java classname="myclasspro.ManageSystemDemoV2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Myfrm">
+        <java classname="User.Myfrm" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="MyScore">
+        <java classname="ClassPro.MyScore" failonerror="true" fork="yes">
+            <arg line="9000"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="MyScoreV2">
+        <java classname="myclasspro.MyScoreV2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="MyScore（1）">
+        <java classname="myclasspro.MyScore" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="MySwitch">
+        <java classname="User.MySwitch" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="ObjectiveStreamDemo">
+        <java classname="file_stream.ObjectiveStreamDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pr3main">
+        <java classname="ClassPro.pr3main" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="PriorityDemo">
+        <java classname="renxiaolong_study.PriorityDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro">
+        <java classname="ClassPro.pro" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro2">
+        <java classname="ClassPro.pro2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro22">
+        <java classname="ClassPro.pro22" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro2（1）">
+        <java classname="myclasspro.pro2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro3">
+        <java classname="ClassPro.pro3" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro3_3">
+        <java classname="ClassPro.pro3_3" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro3_33">
+        <java classname="ClassPro.pro3_33" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro3_333">
+        <java classname="ClassPro.pro3_333" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro4">
+        <java classname="ClassPro.pro4" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro4_4">
+        <java classname="ClassPro.pro4_4" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Pro5">
+        <java classname="ClassPro.Pro5" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Pro55">
+        <java classname="ClassPro.Pro55" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="pro6">
+        <java classname="ClassPro.pro6" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="ProcessDemo">
+        <java classname="file_stream.ProcessDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Procise">
+        <java classname="Procise" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="ProductBiz">
+        <java classname="ProductBiz" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="p_113">
+        <java classname="bookprocise.p_113" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="p_96_7mathDemo">
+        <java classname="bookprocise.p_96_7mathDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Receive">
+        <java classname="renxiaolong_study.net.Receive" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Send">
+        <java classname="renxiaolong_study.net.Send" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Server">
+        <java classname="renxiaolong_study.net.Server" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="sss">
+        <java classname="myclasspro.sss" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="StreamDemo">
+        <java classname="filedemo.StreamDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="StringDemo">
+        <java classname="StringDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Str_pro2">
+        <java classname="ClassPro.Str_pro2" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="SystemPropertiesDemo">
+        <java classname="renxiaolong_study.SystemPropertiesDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="Test4">
+        <java classname="bookprocise.Test4" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="testMain">
+        <java classname="myclasspro.AbstractDemo.TestMain" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="TextMain（1）">
+        <java classname="myclasspro.circleDemo.TextMain" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="UserMain">
+        <java classname="User.UserMain" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="wanjiaDemo">
+        <java classname="wanjiaDemo" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="WebCrawler">
+        <java classname="WebCrawler" failonerror="true" fork="yes">
+            <classpath refid="Javaprocise.classpath"/>
+        </java>
+    </target>
+    <target name="EmployTest.testInit">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="bookprocise.EmployTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="Javaprocise.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
